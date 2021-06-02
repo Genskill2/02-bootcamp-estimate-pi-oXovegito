@@ -1,5 +1,29 @@
 import math
 import unittest
+def wallis(n):
+    p = 2
+
+    for i in range(1,n+1):
+        left = (2.0 * i)/(2. * i - 1.)
+        right = (2.0 * i)/(2. * i + 1.)
+        p = p * left * right
+    # print(p)
+    return p
+
+def monte_carlo(n):
+    import random
+    cp=0
+    sp=0
+    for i in range(n):
+        rx= random.uniform(-1, 1)
+        ry= random.uniform(-1, 1)
+        od= rx**2 + ry**2
+        if od<= 1:
+             cp+= 1
+        sp+= 1
+        p = 4* cp/ sp
+
+    return p
 
 class TestWallis(unittest.TestCase):
     def test_low_iters(self):
